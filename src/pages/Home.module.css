@@ -1,0 +1,54 @@
+/* Home.module.css */
+.homeContainer {
+  background-image: url(../../public/images/feuill_home.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.sectionsWrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #4CAF50; 
+  color: white;
+  padding: 12px 30px;
+  margin-top: 20px;
+  border-radius: 5px; 
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn:hover {
+  background-color: #3e8e41; 
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
