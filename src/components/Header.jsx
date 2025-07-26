@@ -10,13 +10,6 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-     {/* <div className={styles['logo-container']}>
-  <img src="/images/nursery.png" alt="Paradise Nursery Logo" className={styles.logo} />
-  <div className={styles['title-container']}>
-    <h1>Paradise Nursery</h1>
-    <p>Where green meets serenity</p>
-  </div>
-</div> */}
 <div className={styles.logoContainer}>
   <img 
     src="/images/nursery.png" 
@@ -28,9 +21,7 @@ export default function Header() {
     <p>Where green meets serenity</p>
   </div>
 </div>
-
       <div className={styles.pageTitle}>Products</div> {/* Ce titre peut être dynamique */}
-
       <nav className={styles.navLinks}>
         <Link to="/cart" className={styles.cartLink}>
           <FaShoppingCart />

@@ -1,0 +1,129 @@
+/* Cart.css - Inspiré du style productsContainer */
+.cartContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cartTitle {
+  text-align: center;
+  color: #2e7d32; /* Même couleur verte que sectionTitle */
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.cartTitle:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background-color: #2e7d32;
+}
+
+.cartGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.cartItems {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.cartSummary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border: 1px solid #e0e0e0;
+}
+
+.cartEmpty {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.cartEmpty p {
+  color: #616161;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cartTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  color: #2e7d32;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cartTaxNote {
+  color: #757575;
+  font-size: 0.9rem;
+  text-align: right;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.cartActions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btnContinue, .btnCheckout {
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.btnContinue {
+  background-color: white;
+  color: #2e7d32;
+  border: 1px solid #2e7d32;
+}
+
+.btnContinue:hover {
+  background-color: #e8f5e9;
+}
+
+.btnCheckout {
+  background-color: #2e7d32;
+  color: white;
+}
+
+.btnCheckout:hover {
+  background-color: #1b5e20;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cartContainer {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cartActions {
+    grid-template-columns: 1fr;
+  }
+  
+  .cartTitle {
+    font-size: 1.5rem;
+  }
+}

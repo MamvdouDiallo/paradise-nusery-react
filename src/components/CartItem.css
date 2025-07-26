@@ -1,0 +1,146 @@
+/* Style de base */
+.cartItem {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.cartItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itemImageContainer {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.itemImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.itemTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.itemPrice {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  color: #2e7d32;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantityBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quantityBtn:hover {
+  background-color: #f5f5f5;
+}
+
+.quantityBtn.increase {
+  color: #2e7d32;
+  border-color: #c8e6c9;
+}
+
+.quantityBtn.decrease {
+  color: #d32f2f;
+  border-color: #ffcdd2;
+}
+
+.quantityValue {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: #d32f2f;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.removeBtn:hover {
+  color: #b71c1c;
+  transform: scale(1.1);
+}
+
+/* Version mobile */
+@media (max-width: 600px) {
+  .cartItem {
+    grid-template-columns: 60px 1fr;
+    grid-template-areas: 
+      "image info"
+      "quantity quantity";
+    gap: 1rem;
+  }
+  
+  .itemImageContainer {
+    grid-area: image;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .itemInfo {
+    grid-area: info;
+  }
+  
+  .quantityControls {
+    grid-area: quantity;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+  
+  .removeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}

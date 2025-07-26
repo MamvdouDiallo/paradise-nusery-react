@@ -1,35 +1,72 @@
-import { createContext, useState } from 'react';
+
+import { createContext, useState, useContext } from 'react';
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  const updateCart = (plant, delta = 1) => {
+  const updateCart = (item, delta = 1) => {
     setCart(prevCart => {
-      // Si delta = 0, supprime l'item
-      if (delta === 0) return prevCart.filter(item => item.id !== plant.id);
-      
-      // Vérifie si l'item existe déjà
-      const existingItem = prevCart.find(item => item.id === plant.id);
-      
-      if (existingItem) {
-        return prevCart.map(item =>
-          item.id === plant.id 
-            ? { ...item, quantity: item.quantity + delta } 
-            : item
-        ).filter(item => item.quantity > 0);
-      } else {
-        return [...prevCart, { ...plant, quantity: 1 }];
+      // Suppression de l'article si delta = 0
+      if (delta === 0) {
+        return prevCart.filter(cartItem => cartItem.id !== item.id);
       }
+
+      // Recherche de l'article existant
+      const existingItemIndex = prevCart.findIndex(cartItem => cartItem.id === item.id);
+      
+      // Si l'article n'existe pas dans le panier
+      if (existingItemIndex === -1) {
+        // On l'ajoute seulement si on incrémente (delta > 0)
+        return delta > 0 
+          ? [...prevCart, { ...item, quantity: 1 }]
+          : prevCart;
+      }
+
+      // Mise à jour de la quantité pour l'article existant
+      const updatedCart = [...prevCart];
+      const updatedItem = { ...updatedCart[existingItemIndex] };
+      updatedItem.quantity += delta;
+
+      // Suppression si la quantité devient <= 0
+      if (updatedItem.quantity <= 0) {
+        return updatedCart.filter(cartItem => cartItem.id !== item.id);
+      }
+
+      // Mise à jour de l'article dans le panier
+      updatedCart[existingItemIndex] = updatedItem;
+      return updatedCart;
     });
   };
 
-  const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + (item.price * item.quantity),
+    0
+  ).toFixed(2);
 
   return (
-    <CartContext.Provider value={{ cart, updateCart, cartItemCount }}>
+    <CartContext.Provider 
+      value={{ 
+        cart,
+        updateCart,
+        cartItemCount,
+        totalPrice,
+        clearCart: () => setCart([])
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
+}
+
+// Hook personnalisé pour utiliser le contexte
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
 }
